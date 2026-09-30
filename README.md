@@ -503,8 +503,10 @@ Perbaikan dilakukan dengan:
 Kemudian dilakukan modifikasi dengan menambahkan data **program studi (`prodi`)** serta membuat tampilan data mahasiswa menggunakan **HTML dan CSS**.
 
 Program akhir dapat menampilkan NIM, nama, program studi, dan IPK mahasiswa dalam bentuk tampilan card pada halaman web.
+---
 
 
+---
 # Tugas 02 – Produk dan Produk Diskon
 
 ## 1. Kode Awal
