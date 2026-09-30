@@ -52,9 +52,6 @@ $mhs = new Mahasiswa(
 echo $msh->ringkasan();
 ```
 ---
-###Tampilan output
-![Tampilan Awal](tampilanawal1.png)
----
 
 ## 2. Kesalahan Kode Asli
 
@@ -352,7 +349,7 @@ $mhs = new Mahasiswa(
 ```
 
 ### Tampilan Output Setelah Modifikasi
-![Tampilan Setelah Modifikasi](tampilanmodifikasi1.png)
+
 Data mahasiswa yang ditampilkan menjadi:
 
 ```text
@@ -371,7 +368,16 @@ Modifikasi yang dilakukan:
 * Menambahkan HTML untuk tampilan halaman.
 * Menambahkan CSS untuk membuat tampilan berbentuk card.
 * Menampilkan data mahasiswa pada halaman web.
+---
+## Tampilan Tugas 1
 
+### Tampilan Awal
+
+![Tampilan Awal](Tugas01/tampilanawal1.png)
+
+### Tampilan Setelah Modifikasi
+
+![Tampilan Setelah Modifikasi](Tugas01/tampilanmodifikasi1.png)
 ---
 
 # 5. Lima Kode yang Penting
@@ -892,6 +898,17 @@ $daftar = [
 
 </html>
 ```
+
+---
+## Tampilan Tugas 2
+
+### Tampilan Awal
+
+![Tampilan Awal](Tugas02/tampilanawal2.png)
+
+### Tampilan Setelah Modifikasi
+
+![Tampilan Setelah Modifikasi](Tugas02/tampilanmodifikasi2.png)
 
 ---
 
