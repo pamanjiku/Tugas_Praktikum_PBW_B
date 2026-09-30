@@ -51,7 +51,9 @@ $mhs = new Mahasiswa(
 
 echo $msh->ringkasan();
 ```
-
+---
+###Tampilan output
+![Tampilan Awal](tampilanawal1.png)
 ---
 
 ## 2. Kesalahan Kode Asli
@@ -350,7 +352,7 @@ $mhs = new Mahasiswa(
 ```
 
 ### Tampilan Output Setelah Modifikasi
-
+![Tampilan Setelah Modifikasi](tampilanmodifikasi1.png)
 Data mahasiswa yang ditampilkan menjadi:
 
 ```text
