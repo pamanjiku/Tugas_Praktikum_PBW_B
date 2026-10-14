@@ -1012,17 +1012,13 @@ foreach ($daftar as $produk) {
 
 ---
 
-## 7. Kesimpulan
+## 7. Kesimpulan 
 
-Program ini menerapkan konsep **OOP, interface, inheritance, dan polymorphism** pada pengelolaan produk. Setelah beberapa error diperbaiki, program dapat menghitung harga produk dan harga setelah diskon dengan benar.
-
+#### Program ini menerapkan konsep **OOP, interface, inheritance, dan polymorphism** pada pengelolaan produk. Setelah beberapa error diperbaiki, program dapat menghitung harga produk dan harga setelah diskon dengan benar.
 Modifikasi styling bertema **Spider-Man** membuat tampilan program lebih menarik, sedangkan penambahan informasi diskon membuat informasi produk lebih jelas dan mudah dipahami.
 ---
 
-
-# LAPORAN PRAKTIKUM PBW B
-
-## Tugas Pertemuan 3 dan 4 — Database MySQL dan SQL Query Dasar
+# Tugas Pertemuan 3 dan 4 — Database MySQL dan SQL Query Dasar
 
 ---
 
