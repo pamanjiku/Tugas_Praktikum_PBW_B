@@ -1017,3 +1017,240 @@ foreach ($daftar as $produk) {
 Program ini menerapkan konsep **OOP, interface, inheritance, dan polymorphism** pada pengelolaan produk. Setelah beberapa error diperbaiki, program dapat menghitung harga produk dan harga setelah diskon dengan benar.
 
 Modifikasi styling bertema **Spider-Man** membuat tampilan program lebih menarik, sedangkan penambahan informasi diskon membuat informasi produk lebih jelas dan mudah dipahami.
+---
+
+
+# LAPORAN PRAKTIKUM PBW B
+
+## Tugas Pertemuan 3 dan 4 — Database MySQL dan SQL Query Dasar
+
+---
+
+## 1. Pendahuluan
+
+Database merupakan kumpulan data atau informasi yang terorganisasi dan tersimpan secara digital di dalam sistem komputer. Database digunakan untuk menyimpan, mengakses, mengelola, dan memperbarui data dengan mudah, cepat, serta aman.
+
+Database Management System (DBMS) adalah perangkat lunak yang digunakan untuk membuat, mengelola, menyimpan, dan memproses data dalam database. Salah satu DBMS yang digunakan dalam praktikum ini adalah MySQL.
+
+SQL (*Structured Query Language*) merupakan bahasa yang digunakan untuk berkomunikasi dengan database relasional, seperti membuat tabel, memasukkan data, menampilkan data, memperbarui data, dan menghapus data.
+
+## 2. Tujuan Praktikum
+
+1. Memahami konsep dasar database dan DBMS.
+2. Memahami pembuatan tabel menggunakan MySQL.
+3. Memahami penggunaan `PRIMARY KEY` dan `FOREIGN KEY`.
+4. Memahami penggunaan constraints untuk menjaga integritas data.
+5. Mempraktikkan perintah SQL dasar untuk mengelola data.
+6. Memahami penggunaan `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `WHERE`, `ORDER BY`, `GROUP BY`, dan `LIMIT`.
+
+## 3. Dasar Teori
+
+### 3.1 Database dan DBMS
+
+Database adalah kumpulan data yang tersimpan secara terstruktur. DBMS merupakan perangkat lunak yang membantu pengguna mengelola database.
+
+### 3.2 Primary Key
+
+`PRIMARY KEY` adalah kolom atau kombinasi kolom yang memiliki nilai unik untuk mengidentifikasi setiap baris data dalam tabel.
+
+### 3.3 Foreign Key
+
+`FOREIGN KEY` adalah kolom yang merujuk pada primary key di tabel lain untuk membangun hubungan antartabel.
+
+### 3.4 Constraints
+
+Constraints merupakan aturan yang diterapkan pada kolom atau tabel untuk membatasi data yang dapat dimasukkan dan menjaga integritas data.
+
+### 3.5 SQL Query Dasar
+
+- `SELECT`: menampilkan data.
+- `INSERT`: memasukkan data baru.
+- `UPDATE`: memperbarui data.
+- `DELETE`: menghapus data.
+- `WHERE`: menyaring data berdasarkan kondisi.
+- `ORDER BY`: mengurutkan hasil query.
+- `GROUP BY`: mengelompokkan data.
+- `LIMIT`: membatasi jumlah baris hasil query.
+
+## 4. Implementasi Praktikum
+
+Praktikum dilakukan menggunakan MySQL dengan contoh database akademik yang terdiri dari tabel program studi dan mahasiswa.
+
+### 4.1 Pembuatan Database
+
+Database dibuat dengan nama `akademik`.
+
+```sql
+CREATE DATABASE IF NOT EXISTS akademik;
+USE akademik;
+```
+
+### 4.2 Pembuatan Tabel
+
+Tabel `prodi` digunakan untuk menyimpan informasi program studi, sedangkan tabel `mahasiswa` digunakan untuk menyimpan informasi mahasiswa.
+
+```sql
+CREATE TABLE prodi (
+    id_prodi INT AUTO_INCREMENT PRIMARY KEY,
+    nama_prodi VARCHAR(100)
+);
+
+CREATE TABLE mahasiswa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nim VARCHAR(15),
+    nama VARCHAR(100),
+    tanggal_lahir DATE,
+    ipk DECIMAL(3,2)
+        CHECK (ipk BETWEEN 0.00 AND 4.00),
+    id_prodi INT
+);
+```
+
+### 4.3 Pembuatan Relasi Antartabel
+
+Relasi dibuat menggunakan foreign key pada kolom `id_prodi` di tabel mahasiswa.
+
+```sql
+ALTER TABLE mahasiswa
+ADD CONSTRAINT fk_mahasiswa_prodi
+FOREIGN KEY (id_prodi)
+REFERENCES prodi(id_prodi);
+```
+
+### 4.4 Memasukkan Data
+
+Data program studi dimasukkan ke tabel `prodi`.
+
+```sql
+INSERT INTO prodi (nama_prodi)
+VALUES
+    ('Teknik Informatika'),
+    ('Sistem Informasi'),
+    ('Teknik Elektro');
+```
+
+Data mahasiswa dimasukkan ke tabel `mahasiswa`.
+
+```sql
+INSERT INTO mahasiswa
+    (nim, nama, tanggal_lahir, ipk, id_prodi)
+VALUES
+    ('230001', 'Budi Santoso', '2002-05-15', 3.75, 1),
+    ('230002', 'Siti Aminah', '2003-08-20', 3.90, 1),
+    ('230003', 'Rian Hidayat', '2002-12-01', 3.20, 2),
+    ('230004', 'Dewi Lestari', '2003-03-10', 3.65, 3);
+```
+
+### 4.5 Menampilkan Data
+
+Perintah `SELECT` digunakan untuk menampilkan data mahasiswa.
+
+```sql
+SELECT * FROM mahasiswa;
+
+SELECT nim, nama, ipk
+FROM mahasiswa;
+```
+
+### 4.6 Memperbarui Data
+
+Perintah `UPDATE` digunakan untuk mengubah data mahasiswa berdasarkan kondisi tertentu.
+
+```sql
+UPDATE mahasiswa
+SET nama = 'Rian Hidayat, S.Kom.',
+    ipk = 3.80
+WHERE id = 3;
+```
+
+### 4.7 Menyaring Data
+
+Perintah `WHERE` digunakan untuk menampilkan mahasiswa dari program studi tertentu.
+
+```sql
+SELECT *
+FROM mahasiswa
+WHERE id_prodi = 2;
+```
+
+### 4.8 Mengurutkan Data
+
+Perintah `ORDER BY` digunakan untuk mengurutkan data berdasarkan nama atau IPK.
+
+```sql
+SELECT *
+FROM mahasiswa
+ORDER BY nama ASC;
+
+SELECT *
+FROM mahasiswa
+ORDER BY ipk DESC;
+```
+
+### 4.9 Mengelompokkan Data
+
+Perintah `GROUP BY` digunakan untuk menghitung jumlah mahasiswa dan rata-rata IPK berdasarkan program studi.
+
+```sql
+SELECT
+    id_prodi,
+    COUNT(*) AS jumlah_mahasiswa
+FROM mahasiswa
+GROUP BY id_prodi;
+
+SELECT
+    id_prodi,
+    AVG(ipk) AS rata_rata_ipk
+FROM mahasiswa
+GROUP BY id_prodi;
+```
+
+### 4.10 Membatasi Hasil Query
+
+Perintah `LIMIT` digunakan untuk membatasi jumlah baris yang ditampilkan.
+
+```sql
+SELECT *
+FROM mahasiswa
+ORDER BY id ASC
+LIMIT 2 OFFSET 1;
+```
+
+### 4.11 Menghapus Data
+
+Perintah `DELETE` digunakan untuk menghapus data berdasarkan kondisi tertentu.
+
+```sql
+DELETE FROM mahasiswa
+WHERE id = 3;
+```
+
+Perintah penghapusan harus digunakan dengan hati-hati agar tidak menghapus data yang masih diperlukan.
+
+## 5. Kesimpulan
+
+Berdasarkan materi Praktikum PBW B Pertemuan 3 dan 4, database MySQL dapat digunakan untuk menyimpan dan mengelola data secara terstruktur. Pembuatan tabel, penggunaan primary key dan foreign key, serta penerapan constraints membantu menjaga hubungan dan integritas data.
+
+Selain itu, perintah SQL dasar seperti `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `WHERE`, `ORDER BY`, `GROUP BY`, dan `LIMIT` digunakan untuk melakukan berbagai operasi terhadap data dalam database.
+
+## 6. Struktur Repository
+
+```text
+Tugas03_dan_Tugas04/
+├── 01_database_dan_tabel.sql
+├── 02_data_mahasiswa.sql
+└── 03_query_dasar.sql
+```
+
+## 7. Teknologi yang Digunakan
+
+- MySQL
+- SQL (*Structured Query Language*)
+- phpMyAdmin atau MySQL Workbench
+
+---
+
+**Mata Kuliah:** Praktikum Pemrograman Berbasis Web (PBW B)  
+**Pertemuan:** 3 dan 4  
+**Materi:** Database MySQL dan SQL Query Dasar
+
